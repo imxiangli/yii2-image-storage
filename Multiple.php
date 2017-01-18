@@ -14,14 +14,15 @@ class Multiple extends Component implements ImageStorageInterface
     /**
      * @var array 多个适配器配置数组
      * 'oss' => [
-     *     'class' => \common\image\storage\OSS::className(),
-     *     'ossServer' => '',
-     *     'ossServerInternal' => '',
-     *     'accessKeyId' => '',
-     *     'accessKeySecret' => '',
-     *     'defaultBucket' => '',
-     *     'imageDomain' => ''
-     * ],
+	 *     'class' => \imxiangli\image\storage\OSS::className(),
+	 *     'endPoint' => 'oss-cn-beijing.aliyuncs.com', // oss-cn-beijing-internal.aliyuncs.com
+	 *     'accessKeyId' => '',
+	 *     'accessKeySecret' => '',
+	 *     'isCName' => false,
+	 *     'securityToken' => null,
+	 *     'defaultBucket' => '',
+	 * 	   'imageDomain' => 'oss-cn-beijing.aliyuncs.com'
+	 * ],
      * 'iss' => [
      *     'class' => \common\image\storage\ISS::className(),
      *     'accessKeyId' => '',
@@ -75,7 +76,7 @@ class Multiple extends Component implements ImageStorageInterface
     {
         $adapter = null;
         if(empty($this->mainAdapter) && !empty($this->_adapters))
-            $adapter = current($this->_adapters);
+            $adapter = end($this->_adapters);
         else if(isset($this->_adapters[$this->mainAdapter]))
             $adapter = $this->_adapters[$this->mainAdapter];
         if($adapter)
