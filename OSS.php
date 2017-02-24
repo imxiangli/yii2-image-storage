@@ -73,7 +73,7 @@ class OSS extends Component implements ImageStorageInterface
         $m = 'm_fill';
 		if($mode == 1)
         {
-            $m = 'm_pad';
+            $m = 'm_lfit';
         }
 		return 'http://'.$this->defaultBucket.'.'.$this->imageDomain.'/'.$key.'?x-oss-process=image/resize,'.$m.',h_'.$height.',w_'.$width;
 	}
