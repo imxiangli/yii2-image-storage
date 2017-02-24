@@ -69,6 +69,12 @@ class OSS extends Component implements ImageStorageInterface
 	{
 		$width = isset($params['width']) ? $params['width'] : 0;
 		$height = isset($params['height']) ? $params['height'] : 0;
-		return 'http://'.$this->defaultBucket.'.'.$this->imageDomain.'/'.$key.'?x-oss-process=image/resize,m_fill,h_'.$height.',w_'.$width;
+		$mode = isset($params['mode']) ? $params['mode'] : 0;
+        $m = 'm_fill';
+		if($mode == 1)
+        {
+            $m = 'm_pad';
+        }
+		return 'http://'.$this->defaultBucket.'.'.$this->imageDomain.'/'.$key.'?x-oss-process=image/resize,'.$m.',h_'.$height.',w_'.$width;
 	}
 }
